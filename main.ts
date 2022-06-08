@@ -1,0 +1,51 @@
+basic.forever(function on_forever() {
+    let R = maqueen.readPatrol(maqueen.Patrol.PatrolRight)
+    let L = maqueen.readPatrol(maqueen.Patrol.PatrolLeft)
+    let D = maqueen.Ultrasonic(PingUnit.Centimeters)
+    if (D <= 5) {
+        maqueen.motorRun(maqueen.Motors.M1, maqueen.Dir.CW, 0)
+        maqueen.motorRun(maqueen.Motors.M2, maqueen.Dir.CW, 0)
+        R = maqueen.readPatrol(maqueen.Patrol.PatrolRight)
+        L = maqueen.readPatrol(maqueen.Patrol.PatrolLeft)
+        D = maqueen.Ultrasonic(PingUnit.Centimeters)
+    } else if (L == 0 && R == 0) {
+        maqueen.motorRun(maqueen.Motors.M1, maqueen.Dir.CW, 67)
+        maqueen.motorRun(maqueen.Motors.M2, maqueen.Dir.CW, 50)
+        R = maqueen.readPatrol(maqueen.Patrol.PatrolRight)
+        L = maqueen.readPatrol(maqueen.Patrol.PatrolLeft)
+        D = maqueen.Ultrasonic(PingUnit.Centimeters)
+    } else if (L == 0 && R == 1) {
+        maqueen.motorRun(maqueen.Motors.M1, maqueen.Dir.CCW, 60)
+        maqueen.motorRun(maqueen.Motors.M2, maqueen.Dir.CW, 52)
+        basic.pause(100)
+        maqueen.motorRun(maqueen.Motors.M1, maqueen.Dir.CW, 50)
+        maqueen.motorRun(maqueen.Motors.M2, maqueen.Dir.CW, 37)
+        R = maqueen.readPatrol(maqueen.Patrol.PatrolRight)
+        L = maqueen.readPatrol(maqueen.Patrol.PatrolLeft)
+        D = maqueen.Ultrasonic(PingUnit.Centimeters)
+    } else if (L == 1 && R == 0) {
+        maqueen.motorRun(maqueen.Motors.M1, maqueen.Dir.CW, 60)
+        maqueen.motorRun(maqueen.Motors.M2, maqueen.Dir.CCW, 52)
+        basic.pause(100)
+        maqueen.motorRun(maqueen.Motors.M1, maqueen.Dir.CW, 50)
+        maqueen.motorRun(maqueen.Motors.M2, maqueen.Dir.CW, 37)
+        R = maqueen.readPatrol(maqueen.Patrol.PatrolRight)
+        L = maqueen.readPatrol(maqueen.Patrol.PatrolLeft)
+        D = maqueen.Ultrasonic(PingUnit.Centimeters)
+    } else {
+        maqueen.motorRun(maqueen.Motors.M1, maqueen.Dir.CW, 0)
+        maqueen.motorRun(maqueen.Motors.M2, maqueen.Dir.CW, 0)
+        R = maqueen.readPatrol(maqueen.Patrol.PatrolRight)
+        L = maqueen.readPatrol(maqueen.Patrol.PatrolLeft)
+        D = maqueen.Ultrasonic(PingUnit.Centimeters)
+    }
+    
+})
+basic.forever(function on_forever2() {
+    maqueen.writeLED(maqueen.LED.LEDLeft, maqueen.LEDswitch.turnOn)
+    maqueen.writeLED(maqueen.LED.LEDRight, maqueen.LEDswitch.turnOff)
+    basic.pause(500)
+    maqueen.writeLED(maqueen.LED.LEDLeft, maqueen.LEDswitch.turnOff)
+    maqueen.writeLED(maqueen.LED.LEDRight, maqueen.LEDswitch.turnOn)
+    basic.pause(500)
+})
