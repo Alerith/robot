@@ -5,6 +5,10 @@ basic.forever(function on_forever() {
     if (D <= 5) {
         maqueen.motorRun(maqueen.Motors.M1, maqueen.Dir.CW, 0)
         maqueen.motorRun(maqueen.Motors.M2, maqueen.Dir.CW, 0)
+        music.playTone(Note.G, music.beat(100))
+        basic.pause(20)
+        music.playTone(Note.G, music.beat(1000))
+        music.rest(music.beat(5000))
         R = maqueen.readPatrol(maqueen.Patrol.PatrolRight)
         L = maqueen.readPatrol(maqueen.Patrol.PatrolLeft)
         D = maqueen.Ultrasonic(PingUnit.Centimeters)
@@ -44,8 +48,8 @@ basic.forever(function on_forever() {
 basic.forever(function on_forever2() {
     maqueen.writeLED(maqueen.LED.LEDLeft, maqueen.LEDswitch.turnOn)
     maqueen.writeLED(maqueen.LED.LEDRight, maqueen.LEDswitch.turnOff)
-    basic.pause(500)
+    basic.pause(250)
     maqueen.writeLED(maqueen.LED.LEDLeft, maqueen.LEDswitch.turnOff)
     maqueen.writeLED(maqueen.LED.LEDRight, maqueen.LEDswitch.turnOn)
-    basic.pause(500)
+    basic.pause(250)
 })
